@@ -1,10 +1,38 @@
-<div>
-    <ul>
-      <li *ngFor="let item of items">
-        <label>
-          <input type="checkbox" [(ngModel)]="item.selected" (change)="onSelect(item)" />
-          {{ item.name }}
+<div class="dropdown-container">
+    <div class="dropdown-button">
+        <label class="col_label btn btn-primaty" ngFor="let option of options">
+            <input class="name_li btn btn-primaty" type="button" (click)="toggleDropdown()">
+            4 воронки, 24 этапа
         </label>
-      </li>
-    </ul>
-  </div>
+    </div>
+    <div class="dropdown-content" *ngIf="showDropdown">
+        <ul class="col_ul">
+            <li class="col_li" *ngFor="let item of items">
+                <label class="col_label" ngFor="let option of options">
+                <input class="name_li btn btn-primaty" type="button" (click)="toggleSteps()">
+                {{ item.name }}
+                </label>
+                <div class="dropdown-steps" *ngIf="showSteps">
+                    <ul class="step_ul">
+                        <li class="step_li" *ngFor="let step of steps" [style.backgroundColor]="step.color">
+                            <label class="col_label" ngFor="let option of options">
+                                <input class="name_li btn btn-primaty" type="button">
+                                {{ step.name }}
+                                </label>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+     <!-- <div class="dropdown-content" *ngIf="showDropdown">
+        <ul class="col_ul">
+            <li class="col_li" *ngFor="let item of items">
+                <label class="col_label" ngFor="let option of options">
+                <input class="name_li col_p" type="checkbox" [(ngModel)]="item.selected" (change)="onSelect(item)" />
+                {{ item.name }}
+                </label>
+            </li>
+        </ul>
+    </div> -->
+</div>
